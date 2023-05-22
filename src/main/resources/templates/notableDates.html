@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Notable dates</title>
+</head>
+<body>
+<h1>With list to choose from</h1>
+
+<form th:action="@{/notableDates}" method="post" th:object="${person}">
+    <div>
+        <label for="student-birth-day">Date of birth:</label>
+        <input type="date" th:field="${person.birthday}" id="student-birth-day"/>
+    </div>
+    <div>
+        <button type="submit" class="button">Submit</button>
+    </div>
+</form>
+
+</body>
+</html>

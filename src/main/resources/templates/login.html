@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="/images/garbage-truck.png">
+    <link href="/css/style2.css" rel="stylesheet" />
+</head>
+<body>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card header" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Logga in</h2>
+                            <p>Skriv in dina användaruppgifter!</p> <!-- class="text-white-50 mb-5" -->
+                            <form th:action="@{/login}" method="post">
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username"/>
+                                    <label class="form-label" for="typeEmailX">Användarnamn</label>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
+                                    <label class="form-label" for="typePasswordX">Lösenord</label>
+                                </div>
+                                <p class="errormessage" th:if="${failedLogin}">Fel användarnamn eller lösenord</p>
+                                <button class="btn btn-outline-dark btn-lg px-5" type="submit">Logga in</button>
+                            </form>
+
+                        </div>
+
+                        <div>
+                            <p class="mb-0">Har du inget konto?  <a href="/register" class="text-black-50 fw-bold">Registrera Konto</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/">Notable info</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li th:if="${currentURL == 'localhost:8080/home'}" class="nav-item"><a class="nav-link active"  aria-current="page" href="/home">Home</a></li>
+                <li th:if="${currentURL != 'localhost:8080/home'}" class="nav-item"><a class="nav-link"   href="/home">Home</a></li>
+
+                <li th:if="${currentURL == 'localhost:8080/birthdays'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/birthdays">Birthdays</a></li>
+                <li th:if="${currentURL != 'localhost:8080/birthdays'}"  class="nav-item"><a class="nav-link" href="/birthdays">Birthdays</a></li>
+
+                <!--<li th:if="${currentURL == 'localhost:8080/login' or currentURL == 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link active" href="/login">Logga in/Skapa konto</a></li>
+                <li th:if="${currentURL != 'localhost:8080/login' and currentURL != 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link " href="/login">Logga in/Skapa konto</a></li>
+
+                <li th:if="${currentURL == 'localhost:8080/account'}" sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link active" href="/account">Konto</a></li>
+                <li th:if="${currentURL != 'localhost:8080/account'}" sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/account">Konto</a></li>-->
+            </ul>
+                <form sec:authorize="isAuthenticated()" class="d-flex" th:action="@{/logout}" method="POST" >
+                    <input type="submit" class="btn btn-outline-dark flex-shrink-0" value="Logout">
+                </form>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<header th:fragment="header" class="py-3 header">
+<!--    <iframe width="420" height="300"-->
+<!--            source src="https://www.youtube.com/embed/-V8weH3c2Ow?playlist=-V8weH3c2Ow&loop=1&autoplay=1&controls=0&mute=1">-->
+<!--    </iframe>-->
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shit Must Go</h1>
+            <p class="lead fw-normal text-white-50 mb-0">För en grönare framtid</p>
+        </div>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="py-1 header mt-auto">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; ShitMustGo 2023</p></div>
+</footer>
+
+</body>
+</html>

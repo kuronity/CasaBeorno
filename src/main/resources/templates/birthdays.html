@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Birthdays</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/images/quin69.png">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/style2.css" rel="stylesheet" />
+</head>
+<body>
+<nav th:insert="~{fragments::navbar}"></nav>
+<header class="py-3 header">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Señor Beorno's Chateau</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Where dreams come to die</p>
+        </div>
+    </div>
+</header>
+
+<ul th:each="person : ${persons}">
+    <a th:href="'/birthdays/' + ${person.id}"><div th:text="${person.name}"></div></a>
+    <div th:text="'Birthday: ' + ${person.birthday} + ' Days until next birthday: ' + ${person.daysToBirthday}"></div>
+    <div th:text="'Nameday: ' + ${#temporals.day(person.nameday)} + '/' + ${#temporals.month(person.nameday)}"></div>
+    <div th:text="${someService.daysToBirthday(person)}"></div>
+    <br>
+</ul>
+
+</body>
+</html>
