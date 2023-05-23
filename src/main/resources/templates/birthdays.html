@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
     <title>Birthdays</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/images/quin69.png">
+    <link href="/images/pepe-16x16.png" rel="icon" type="image/x-icon">
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -24,13 +24,70 @@
     </div>
 </header>
 
-<ul th:each="person : ${persons}">
-    <a th:href="'/birthdays/' + ${person.id}"><div th:text="${person.name}"></div></a>
-    <div th:text="'Birthday: ' + ${person.birthday} + ' Days until next birthday: ' + ${person.daysToBirthday}"></div>
-    <div th:text="'Nameday: ' + ${#temporals.day(person.nameday)} + '/' + ${#temporals.month(person.nameday)}"></div>
-    <div th:text="${someService.daysToBirthday(person)}"></div>
-    <br>
-</ul>
+<!-- Some random table-like structure!!!
+<table class="table" id="table"> &lt;!&ndash;th:if="${model.personPagination != null} &ndash;&gt;
+    <tr>
+        <th scope="col">
+            <a th:href="@{'/birthdays/page/' + ${currentPage} + '?sortField=birthday&sortDir=' + ${reverseSortDir}}"><strong>Birthday</strong></a>
+        </th>
+        <th scope="col">
+            <a th:href="@{'/birthdays/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}"><strong>Name</strong></a>
+        </th>
+        <th hidden></th>
+        <th hidden></th>
+    </tr>
+</table>-->
 
+<!-- Pagination -->
+<div>
+    Total persons: [[${totalPersons}]] -
+    Page [[${currentPage}]] of [[${totalPages}]] -
+
+    <a th:href="@{'/birthdays/page/1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" th:if="${currentPage != 1}">First</a>
+    <span th:unless="${currentPage != 1}">First</span>
+
+    <a th:href="@{'/birthdays/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" th:if="${currentPage != 1}">Previous</a>
+    <span th:unless="${currentPage != 1}">Previous</span>
+
+    <!-- Show clickable pages-->
+    <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{'/birthdays/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}" th:if="${currentPage != i}">[[${i}]]</a>
+        <span th:unless="${currentPage != i}">[[${i}]]</span>&nbsp;
+    </span>
+
+    <a th:href="@{'/birthdays/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" th:if="${currentPage < totalPages}">Next</a>
+    <span th:unless="${currentPage < totalPages}">Next</span>
+
+    <a th:href="@{'/birthdays/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" th:if="${currentPage < totalPages}">Last</a>
+    <span th:unless="${currentPage < totalPages}">Last</span>
+</div>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <ul th:each="person : ${personsOnCurrentPage}">
+
+            <a th:href="'/birthdays/' + ${person.id}"><div th:text="${person.name}"></div></a>
+
+            <!--/* If the person has an image, this code will be rendered. */-->
+            <a th:href="'/birthdays/' + ${person.id}">
+                <div class="img-container" th:if="${person.image}">
+                    <img height="150" th:src="@{|/${person.image}|}"a/>
+                </div>
+                <!--/* If the product has no image, display default Image. */-->
+                <div class="img-container" th:unless="${person.image}">
+                    <img height="150" th:src="@{/images/Anonymous-symbol.jpg}" width="150" />
+                </div>
+            </a>
+
+            <div th:text="'Birthday: ' + ${person.birthday}"></div>
+            <div th:text="'Next birthday in: ' + ${someService.daysToBirthday(person)} + ' days'"></div>
+            <div th:text="'Nameday: ' + ${#temporals.day(person.nameday)} + '/' + ${#temporals.month(person.nameday)}"></div>
+
+            <br>
+        </ul>
+    </div>
+    </div>
+</section>
 </body>
 </html>

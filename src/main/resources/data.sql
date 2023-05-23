@@ -1,4 +1,4 @@
-INSERT INTO Person (name, birthday, nameday, days_to_birthday) values ('Björn', '1990-12-25', '1990-06-18', '0');
+INSERT INTO Person (name, birthday, nameday, days_to_birthday, image) values ('Björn', '1990-12-25', '1990-06-18', '0', 'images/beornoSensei.jpg');
 INSERT INTO Person (name, birthday, nameday, days_to_birthday) values ('Mamma', '1955-05-14', '1990-10-09', '0');
 INSERT INTO Person (name, birthday, nameday, days_to_birthday) values ('Pappa', '1953-05-06', '1990-06-11', '0');
 

@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,16 +50,17 @@ public class SomeController {
     }
 
     @GetMapping("/birthdays")
-    public String getBirthdays(Model model) {
+    public String getBirthdays(@RequestParam(required = false) Long id, Model model) {
         model.addAttribute("someService", someService);
         List<Person> persons = someService.getAllPersons();
-        for (Person person: persons) {
+/*        for (Person person: persons) {
             long daysToBirthday = someService.daysToBirthday(person);
             person.setDaysToBirthday(daysToBirthday);
-        }
+        }*/
         model.addAttribute("persons", persons);
-        return "birthdays";
+        return PaginatedBirthdays(id,model,1, "name", "asc");
     }
+
     @GetMapping("/birthdays/{id}")
     public String getBirthdays2(Model model, @PathVariable Long id) {
         Person person = personRepo.findById(id).get();
@@ -65,6 +69,17 @@ public class SomeController {
         System.out.println(id);
         System.out.println(someService.daysToBirthday(person));
         return "detailBirthday";
+    }
+    @GetMapping("/birthdays/page/{currentPage}")
+    public String PaginatedBirthdays(@RequestParam(required = false) Long id, Model model,
+                                     @PathVariable(required = false) int currentPage,
+                                     @Param("sortField") String sortField, @Param("sortDir") String sortDir) {
+        someService.paginationModelGeneration(model, id != null ? personRepo.findById(id).get() :
+                new Person("H", LocalDate.now(), LocalDate.now(), "none.jpg"), currentPage, sortField, sortDir);
+        model.addAttribute("someService", someService);
+        List<Person> persons = someService.getAllPersons();
+        model.addAttribute("persons",persons);
+        return "birthdays";
     }
     @GetMapping("/notableDates")
     public String getNotableDates(Model model, @RequestParam(required = false, defaultValue = "Mamma") String name) {

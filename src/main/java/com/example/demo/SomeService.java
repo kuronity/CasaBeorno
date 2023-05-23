@@ -1,7 +1,13 @@
 package com.example.demo;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -39,6 +45,32 @@ public class SomeService {
             nextNameday = nextNameday.plusYears(1);
         }
         return ChronoUnit.DAYS.between(today, nextNameday);
+    }
+    public Page<Person> getPersonsPagination(int pageNumber, String sortField, String sortDir) {
+        Sort sort = Sort.by(sortField);
+        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+        Pageable pageable = PageRequest.of(pageNumber - 1,8, sort);
+        System.out.println(personRepo.findAll(pageable));
+        return personRepo.findAll(pageable);
+    }
+    public Model paginationModelGeneration(Model model, Person person, int currentPage, String sortField, String sortDir) {
+        Page<Person> page = getPersonsPagination(currentPage, sortField, sortDir);
+        List<Person> persons = getAllPersons();
+        int totalPages = page.getTotalPages();
+        long totalPersons = page.getTotalElements();
+        model.addAttribute("personsOnCurrentPage", page);
+        model.addAttribute("totalPersons", totalPersons);
+        model.addAttribute("person", person);
+        //model.addAttribute("persons", persons);
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages",totalPages);
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDir",sortDir);
+
+        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+        model.addAttribute("reverseSortDir",reverseSortDir);
+
+        return model;
     }
     public List<Person> birthday() {
         HashMap<String, LocalDate> birthdays = new HashMap<>();

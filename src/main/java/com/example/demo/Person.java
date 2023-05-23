@@ -20,6 +20,7 @@ public class Person {
     LocalDate birthday;
     LocalDate nameday;
     long daysToBirthday;
+    String image;
 
     public Person() {
     }
@@ -30,11 +31,19 @@ public class Person {
         this.nameday = nameday;
     }
 
-    public Person(String name, LocalDate birthday, LocalDate nameday, long daysToBirthday) {
+    public Person(String name, LocalDate birthday, LocalDate nameday, String image) {
         this.name = name;
         this.birthday = birthday;
         this.nameday = nameday;
-        this.daysToBirthday = daysToBirthday;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public long getDaysToBirthday() {
