@@ -2,16 +2,16 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Detail birthday</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/images/quin69.png">
+    <link href="/images/pepe-16x16.png" rel="icon" type="image/x-icon">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/style2.css" rel="stylesheet" />
+    <link href="/style2.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -25,11 +25,42 @@
     </div>
 </header>
 
-<h1 th:text="${person.name}"></h1>
-<div th:text="'Birthday: ' + ${person.birthday}"></div>
-<div th:text="'Days to birthday: ' + ${daysToBirthday}"></div>
-<div th:text="'Nameday: ' + ${#temporals.day(person.nameday)} + '/' + ${#temporals.month(person.nameday)}"></div>
-<a href="/birthdays">Back</a>
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="detailPageRow gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center text-center">
+            <h1 th:text="${person.name}"></h1>
+
+            <div class="img-container" th:if="${person.image}">
+                <img height="150" th:src="@{|/${person.image}|}">
+            </div>
+            <!--/* If the product has no image, display default Image. */-->
+            <div class="img-container" th:unless="${person.image}">
+                <img height="150" th:src="@{/images/Anonymous-symbol.jpg}" width="150"/>
+            </div>
+
+            <div th:inline="text">
+                <span class="bearSpan" th:text="'Birthday: '"></span>
+                [[${person.birthday}]]
+            </div> <!--"'Birthday: ' + ${person.birthday}"-->
+
+            <div th:inline="text">
+                <span class="bearSpan" th:text="'Days to birthday: '"></span>
+                [[${daysToBirthday}]]
+            </div>
+
+            <div th:inline="text">
+                <span class="bearSpan" th:text="'Nameday: '"></span>
+                [[${#temporals.day(person.nameday)}]]/[[${#temporals.month(person.nameday)}]]
+            </div>
+
+            <!--<div th:text="'Days to birthday: ' + ${daysToBirthday}"></div>
+            <div th:text="'Nameday: ' + ${#temporals.day(person.nameday)} + '/' + ${#temporals.month(person.nameday)}"></div>-->
+            <form action="/birthdays">
+                <button type="submit" class="bearButton">Back</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

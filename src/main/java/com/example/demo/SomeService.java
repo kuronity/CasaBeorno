@@ -50,7 +50,7 @@ public class SomeService {
         Sort sort = Sort.by(sortField);
         sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
         Pageable pageable = PageRequest.of(pageNumber - 1,8, sort);
-        System.out.println(personRepo.findAll(pageable));
+        //System.out.println(personRepo.findAll(pageable));
         return personRepo.findAll(pageable);
     }
     public Model paginationModelGeneration(Model model, Person person, int currentPage, String sortField, String sortDir) {

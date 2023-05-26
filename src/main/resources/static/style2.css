@@ -10882,6 +10882,13 @@ justify-content: center;
     flex-wrap: wrap;
     align-content: center;
 }
+.pageViewLessBottomMargin{
+display: flex;
+justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
 
 .pageLab{
 margin-left: 20px;
@@ -10987,13 +10994,46 @@ transform: rotate(90deg);
 }
 
 .pappabjörn{
+display: grid;
 border: 3px solid;
 border-radius: 15px;
 border-color: #5c715e;
 box-shadow: 10px 5px 5px gray;
+justify-items: center;
 }
 
 .margin-l10-b5{
 margin-left: 10px;
 margin-bottom: 5px;
+}
+.detailPageRow {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  flex-direction: column;
+  align-items: center;
+  }
+.bearButton {
+transition-duration: 0.4s;
+border: 2px solid #555555;
+border-radius: 6px;
+background-color: white;
+color: black;
+}
+.bearButton:hover {
+background-color: #555555;
+color: white;
+}
+.bearSpan {
+font-weight: bold;
+}
+.bearImageBorder {
+border: 2px solid #5555550d;
+}
+.bearSoonBirthday {
+box-shadow: 10px 5px 5px red !important;
 }

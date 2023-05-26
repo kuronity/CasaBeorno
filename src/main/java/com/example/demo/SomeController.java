@@ -66,8 +66,6 @@ public class SomeController {
         Person person = personRepo.findById(id).get();
         model.addAttribute("person", person);
         model.addAttribute("daysToBirthday", someService.daysToBirthday(person));
-        System.out.println(id);
-        System.out.println(someService.daysToBirthday(person));
         return "detailBirthday";
     }
     @GetMapping("/birthdays/page/{currentPage}")
@@ -81,6 +79,11 @@ public class SomeController {
         model.addAttribute("persons",persons);
         return "birthdays";
     }
+    @GetMapping("/wendussy")
+    public String Wendussy() {
+        return "wendussy";
+    }
+
     @GetMapping("/notableDates")
     public String getNotableDates(Model model, @RequestParam(required = false, defaultValue = "Mamma") String name) {
         Person person = someService.getPerson(name);
