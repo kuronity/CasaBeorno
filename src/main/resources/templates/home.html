@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Birthdays</title>
+    <!-- Favicon-->
+    <link href="/images/pepe-16x16.png" rel="icon" type="image/x-icon">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/style2.css" rel="stylesheet"/>
 </head>
 <body>
-Hej
-<a href="/birthdays">Birthday page</a>
-</body>
-</html>
+<nav th:insert="~{fragments::navbar}"></nav>
+<header class="py-3 header">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Señor Beorno's Chateau</h1>
+            <p class="lead fw-normal text-white-50 mb-0">A place of imagination unfettered</p>
+        </div>
+    </div>
+</header>

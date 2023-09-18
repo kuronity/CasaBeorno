@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import jakarta.servlet.http.HttpSession;
+import com.example.demo.API.APIs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -22,6 +20,8 @@ public class SomeController {
     SomeService someService;
     @Autowired
     PersonRepo personRepo;
+    @Autowired
+    APIs apis;
 
     @GetMapping("/")
     String homeRedirect(){
@@ -79,10 +79,6 @@ public class SomeController {
         model.addAttribute("persons",persons);
         return "birthdays";
     }
-    @GetMapping("/wendussy")
-    public String Wendussy() {
-        return "wendussy";
-    }
 
     @GetMapping("/notableDates")
     public String getNotableDates(Model model, @RequestParam(required = false, defaultValue = "Mamma") String name) {
@@ -102,5 +98,20 @@ public class SomeController {
         model.addAttribute("daysToNameday", someService.daysToNameday(person));
         System.out.println(someService.daysToBirthday(personRepo.findByName("Mamma")));
         return "notableDates";
+    }
+
+    @GetMapping("/wendussy")
+    public String Wendussy() {
+        return "wendussy";
+    }
+    @GetMapping("/API")
+    public String API() throws Exception {
+        return "API";
+    }
+    @PostMapping("/API")
+    public String postAPI(Model model, @RequestParam(required = false, defaultValue = "Pappa") String name) throws Exception {
+        String boredReturn = apis.boredAPI();
+        model.addAttribute("boredReturn", boredReturn);
+        return "API";
     }
 }

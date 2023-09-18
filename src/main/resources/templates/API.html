@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <title>Hmmge</title>
+    <title>API Calls</title>
     <!-- Favicon-->
     <link href="/images/pepe-16x16.png" rel="icon" type="image/x-icon">
     <!-- Bootstrap icons-->
@@ -13,9 +13,21 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/style2.css" rel="stylesheet"/>
 </head>
+
 <body>
 <nav th:insert="~{fragments::navbar}"></nav>
-<img height="500" th:src="@{/images/jesus.jpg}" width="500" style="margin-top 50px;"/>
+
+<section style="margin-top: 60px;">
+
+    <button class="bearButton">Generate random activity</button>
+
+    <form class="form-center" action="/API" method="post">
+
+        <div style="margin-top: 50px;">BoredAPI result: [[${boredReturn}]]</div>
+
+    </form>
+
+</section>
 
 </body>
 </html>

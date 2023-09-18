@@ -19,7 +19,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Señor Beorno's Chateau</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Where dreams come to die</p>
+            <p class="lead fw-normal text-white-50 mb-0">A place of imagination unfettered</p>
         </div>
     </div>
 </header>
@@ -42,6 +42,7 @@
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
+            <!--/* Populate page */-->
             <ul th:each="person : ${personsOnCurrentPage}">
                 <div class="pappabjörn" th:classappend="${someService.daysToBirthday(person) < 50 || someService.daysToNameday(person) < 50 ? 'bearSoonBirthday' : ''}">
                 <a th:href="'/birthdays/' + ${person.id}">
@@ -51,7 +52,7 @@
                 <!--/* If the person has an image, this code will be rendered. */-->
                 <a th:href="'/birthdays/' + ${person.id}">
                     <div class="img-container bearImageBorder" th:if="${person.image}">
-                        <img height="150" th:src="@{|/${person.image}|}" a/>
+                        <img height="150" th:src="@{|/${person.image}|}"/>
                     </div>
                     <!--/* If the product has no image, display default Image. */-->
                     <div class="img-container bearImageBorder" th:unless="${person.image}">
@@ -104,8 +105,8 @@
     <!-- Show clickable pages-->
     <span th:each="i : ${#numbers.sequence(1, totalPages)}">
         <a th:href="@{'/birthdays/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}"
-           th:if="${currentPage != i}">[[${i}]]</a>
-        <span th:unless="${currentPage != i}">[[${i}]]</span>&nbsp;
+           th:if="${currentPage != i}">[[${i}]]&nbsp;</a>
+        <span th:unless="${currentPage != i}">[[${i}]]&nbsp;</span>
     </span>
 
     <a th:href="@{'/birthdays/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"

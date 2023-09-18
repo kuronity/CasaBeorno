@@ -20,6 +20,9 @@
                 <li th:if="${currentURL == 'localhost:8080/wendussy'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/wendussy">Wendussy</a></li>
                 <li th:if="${currentURL != 'localhost:8080/wendussy'}"  class="nav-item"><a class="nav-link" href="/wendussy">Wendussy</a></li>
 
+                <li th:if="${currentURL == 'localhost:8080/API'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/API">Wendussy</a></li>
+                <li th:if="${currentURL != 'localhost:8080/API'}"  class="nav-item"><a class="nav-link" href="/API">API</a></li>
+
                 <!--<li th:if="${currentURL == 'localhost:8080/login' or currentURL == 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link active" href="/login">Logga in/Skapa konto</a></li>
                 <li th:if="${currentURL != 'localhost:8080/login' and currentURL != 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link " href="/login">Logga in/Skapa konto</a></li>
 
