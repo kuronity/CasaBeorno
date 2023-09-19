@@ -1,15 +1,18 @@
 package com.example.demo.API;
 
 import com.google.gson.Gson;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @Service
 public class APIs {
@@ -17,24 +20,45 @@ public class APIs {
     // .GET() is the standard method if no other is specified
     Gson gson = new Gson();
 
-    public String boredAPI() throws Exception {
-        BoredAPI bored;
+    public List<String> boredAPI() throws Exception {
+
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://www.boredapi.com/api/activity/"))
                 .build();
-        System.out.println("getRequest: " + getRequest);
-
-
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        bored = gson.fromJson(getResponse.body(), BoredAPI.class);
+        BoredAPI bored = gson.fromJson(getResponse.body(), BoredAPI.class);
+
+        // The whole response in Json
+        // String boredTest = gson.toJson(getResponse.body());
+        // System.out.println(boredTest);
 
 
-        System.out.println("getResponse: " + getResponse);
-        System.out.println("bored object: " + bored);
-        System.out.println("bored specific activity: " + bored.getActivity());
+        String jsonRequest = gson.toJson(bored);
+        // System.out.println("jsonRequest: " + jsonRequest);
 
-        return bored.getActivity();
+        return List.of(bored.getActivity(), bored.getLink());
+    }
+    public String openDotaAPI() throws Exception {
+        long id = 7342378199L;
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI("https://api.opendota.com/api/matches/" + id))
+                .build();
+
+        System.out.println("dota GetRequest: " + getRequest);
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        OpenDotaAPI openDotaAPI = gson.fromJson(getResponse.body(), OpenDotaAPI.class);
+        //openDotaAPI.setId(7342378199L);
+
+        String jsonRequest = gson.toJson(openDotaAPI);
+        System.out.println("dota jsonRequest: " + jsonRequest);
+
+        System.out.println(openDotaAPI.getPicks_bans());
+        System.out.println(openDotaAPI.getDuration());
+
+        return openDotaAPI.getDuration();
     }
 }

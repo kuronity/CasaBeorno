@@ -19,11 +19,25 @@
 
 <section style="margin-top: 60px;">
 
-    <button class="bearButton">Generate random activity</button>
+
 
     <form class="form-center" action="/API" method="post">
+        <div>
+            <button class="bearButton" style="margin-left: 5px;">Generate random activity</button>
+            [[${boredActivity}]] <a th:text="${boredLink}" th:href="${boredLink}"></a>
+        </div>
 
-        <div style="margin-top: 50px;">BoredAPI result: [[${boredReturn}]]</div>
+    </form>
+
+    <form class="form-center" th:action="@{/API/} + ${dotaMatchId}" method="post">
+        <div>
+            <label for="dotaMatchId">Get duration of dotagame using match id</label>
+            <input type="text" id="dotaMatchId" name="dotaMatchId">
+            <input type="submit" value="Submit">
+            <div>
+                Game lasted: [[${dotaGameDuration}]] seconds. <a th:text="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}" th:href="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}"></a>
+            </div>
+        </div>
 
     </form>
 
