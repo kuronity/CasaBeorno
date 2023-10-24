@@ -121,7 +121,7 @@ public class SomeController {
     }
     @PostMapping("/API/{dotaMatchId}")
     public String postAPI(Model model, @RequestParam(required = false, defaultValue = "7342378199") long dotaMatchId) throws Exception {
-        String dotaGameDuration = apis.openDotaAPI();
+        String dotaGameDuration = apis.openDotaAPI(dotaMatchId);
         System.out.println(dotaGameDuration);
         model.addAttribute("dotaGameDuration", dotaGameDuration);
         model.addAttribute("dotaMatchId", dotaMatchId);

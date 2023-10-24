@@ -40,8 +40,8 @@ public class APIs {
 
         return List.of(bored.getActivity(), bored.getLink());
     }
-    public String openDotaAPI() throws Exception {
-        long id = 7342378199L;
+    public String openDotaAPI(long id) throws Exception {
+        // long id = 7342378199L;
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.opendota.com/api/matches/" + id))
                 .build();
@@ -50,14 +50,15 @@ public class APIs {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println("getResponse: " + getResponse);
         OpenDotaAPI openDotaAPI = gson.fromJson(getResponse.body(), OpenDotaAPI.class);
         //openDotaAPI.setId(7342378199L);
 
         String jsonRequest = gson.toJson(openDotaAPI);
         System.out.println("dota jsonRequest: " + jsonRequest);
 
-        System.out.println(openDotaAPI.getPicks_bans());
-        System.out.println(openDotaAPI.getDuration());
+        System.out.println("get picks and bans: " + openDotaAPI.getPicks_bans());
+        System.out.println("Game duration " + openDotaAPI.getDuration());
 
         return openDotaAPI.getDuration();
     }

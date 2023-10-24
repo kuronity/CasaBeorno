@@ -33,7 +33,10 @@
             <input type="text" id="dotaMatchId" name="dotaMatchId">
             <input type="submit" value="Submit">
             <div>
-                Game lasted: [[${dotaGameDuration}]] seconds. <a th:text="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}" th:href="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}"></a>
+                <!--<span th:text="${dotaGameDuration} ?: 'Game doesn't exist or invalid matchid.'"></span>-->
+                <span th:if="${dotaGameDuration == null}">Game doesn't exist or invalid matchid.<br></span>
+                <span th:unless="${dotaGameDuration == null}">Game lasted: [[${dotaGameDuration}]] seconds.<br></span>
+                Match link: <a th:text="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}" th:href="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}"></a>
             </div>
         </div>
 
