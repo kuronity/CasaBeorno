@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Calculator of Deth</title>
+    <!-- Favicon-->
+    <link href="/images/pepe-16x16.png" rel="icon" type="image/x-icon">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/style2.css" rel="stylesheet"/>
+</head>
+<body class="calcBody">
+<nav th:insert="~{fragments::navbar}"></nav>
+
+<div class="calcContainer">
+    <section>
+        <div></div>
+        <div>0</div>
+    </section>
+    <section>
+        <button type="button" class="func_btn" id="clear" value="">C</button>
+        <button type="button" class="func_btn" id="erase" value="">&#11013;</button>
+        <button type="button" class="func_btn" value="/">/</button>
+        <button type="button" class="func_btn" value="%">%</button>
+        <button type="button" class="num_btn" value="7">7</button>
+        <button type="button" class="num_btn" value="8">8</button>
+        <button type="button" class="num_btn" value="9">9</button>
+        <button type="button" class="func_btn" value="*">*</button>
+        <button type="button" class="num_btn" value="4">4</button>
+        <button type="button" class="num_btn" value="5">5</button>
+        <button type="button" class="num_btn" value="6">6</button>
+        <button type="button" class="func_btn" value="-">-</button>
+        <button type="button" class="num_btn" value="1">1</button>
+        <button type="button" class="num_btn" value="2">2</button>
+        <button type="button" class="num_btn" value="3">3</button>
+        <button type="button" class="func_btn" value="+">+</button>
+        <button type="button" class="num_btn" value="00">00</button>
+        <button type="button" class="num_btn" value="0">0</button>
+        <button type="button" class="num_btn" value=".">.</button>
+        <button type="button" class="func_btn" id="evaluate" value="">=</button>
+    </section>
+</div>
+<script src="../static/app.js"></script>
+
+
+</body>
+</html>

@@ -2,6 +2,8 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="/style2.css" rel="stylesheet"/>
     <title>Title</title>
 </head>
 <body>
@@ -20,8 +22,11 @@
                 <li th:if="${currentURL == 'localhost:8080/wendussy'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/wendussy">Wendussy</a></li>
                 <li th:if="${currentURL != 'localhost:8080/wendussy'}"  class="nav-item"><a class="nav-link" href="/wendussy">Wendussy</a></li>
 
-                <li th:if="${currentURL == 'localhost:8080/API'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/API">Wendussy</a></li>
+                <li th:if="${currentURL == 'localhost:8080/API'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/API">API</a></li>
                 <li th:if="${currentURL != 'localhost:8080/API'}"  class="nav-item"><a class="nav-link" href="/API">API</a></li>
+
+                <li th:if="${currentURL == 'localhost:8080/calculator'}" aria-current="page" class="nav-item"><a class="nav-link active" href="/calculator">Calculator</a></li>
+                <li th:if="${currentURL != 'localhost:8080/calculator'}"  class="nav-item"><a class="nav-link" href="/calculator">Calculator</a></li>
 
                 <!--<li th:if="${currentURL == 'localhost:8080/login' or currentURL == 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link active" href="/login">Logga in/Skapa konto</a></li>
                 <li th:if="${currentURL != 'localhost:8080/login' and currentURL != 'localhost:8080/register'}" sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link " href="/login">Logga in/Skapa konto</a></li>

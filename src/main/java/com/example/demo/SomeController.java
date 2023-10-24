@@ -104,17 +104,25 @@ public class SomeController {
     public String Wendussy() {
         return "wendussy";
     }
+    @GetMapping("/calculator")
+    public String Calculator() {
+        return "calculator";
+    }
     @GetMapping("/API")
     public String API() throws Exception {
         return "API";
     }
-    @PostMapping("/API/{dotaMatchId}")
-    public String postAPI(Model model, @RequestParam(required = false, defaultValue = "7342378199") long dotaMatchId) throws Exception {
+    @PostMapping("/API")
+    public String boredAPI(Model model) throws Exception {
         List<String> activityInfo = apis.boredAPI();
-        //System.out.println(activityInfo);
-        String dotaGameDuration = apis.openDotaAPI();
         model.addAttribute("boredActivity", activityInfo.get(0));
         model.addAttribute("boredLink", activityInfo.get(1));
+        return "API";
+    }
+    @PostMapping("/API/{dotaMatchId}")
+    public String postAPI(Model model, @RequestParam(required = false, defaultValue = "7342378199") long dotaMatchId) throws Exception {
+        String dotaGameDuration = apis.openDotaAPI();
+        System.out.println(dotaGameDuration);
         model.addAttribute("dotaGameDuration", dotaGameDuration);
         model.addAttribute("dotaMatchId", dotaMatchId);
         return "API";
