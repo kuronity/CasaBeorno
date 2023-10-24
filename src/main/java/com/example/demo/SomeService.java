@@ -120,5 +120,13 @@ public class SomeService {
         return personList;
     }
 
+    public String secondsToMinutesAndSeconds(String seconds) {
+        int secs = Integer.parseInt(seconds);
+        int minutes = secs / 60;
+        int restSeconds = secs % 60;
+
+        return minutes + " minutes and " + restSeconds + " seconds.";
+    }
+
 
 }

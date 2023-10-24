@@ -59,7 +59,6 @@ public class APIs {
 
         System.out.println("get picks and bans: " + openDotaAPI.getPicks_bans());
         System.out.println("Game duration " + openDotaAPI.getDuration());
-
         return openDotaAPI.getDuration();
     }
 }

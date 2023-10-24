@@ -24,7 +24,6 @@
             <button class="bearButton" style="margin-left: 5px;">Generate random activity</button>
             [[${boredActivity}]] <a th:text="${boredLink}" th:href="${boredLink}"></a>
         </div>
-
     </form>
 
     <form class="form-center" th:action="@{/API/} + ${dotaMatchId}" method="post">
@@ -35,11 +34,10 @@
             <div>
                 <!--<span th:text="${dotaGameDuration} ?: 'Game doesn't exist or invalid matchid.'"></span>-->
                 <span th:if="${dotaGameDuration == null}">Game doesn't exist or invalid matchid.<br></span>
-                <span th:unless="${dotaGameDuration == null}">Game lasted: [[${dotaGameDuration}]] seconds.<br></span>
+                <span th:unless="${dotaGameDuration == null}">Game lasted: [[${dotaGameDuration}]]<br></span>
                 Match link: <a th:text="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}" th:href="@{https://www.dotabuff.com/matches/} + ${dotaMatchId}"></a>
             </div>
         </div>
-
     </form>
 
 </section>
